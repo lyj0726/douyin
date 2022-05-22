@@ -1,0 +1,4 @@
+Name: douyin-api
+Host: 0.0.0.0
+Port: 8080
+DataSourceName: root:1026@(127.0.0.1:3306)/douyin?charset=utf8

@@ -1,0 +1,61 @@
+syntax = "v1"
+
+info (
+	title: // douyin
+	desc: // douyin-demo
+	author: "lyj0726"
+	email: "920141528@qq.com"
+)
+
+type registerRequest {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type registerResponse {
+	Status_code int32  `json:"status_code"`
+	Status_msg  string `json:"status_msg"`
+	User_id     int64  `json:"user_id"`
+	Token       string `json:"token"`
+}
+
+type loginRequest {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type loginResponse {
+	Status_code int32  `json:"status_code"`
+	Status_msg  string `json:"status_msg"`
+	User_id     int64  `json:"user_id"`
+	Token       string `json:"token"`
+}
+
+type userInfoRequest {
+	User_id int64  `json:"user_id"`
+	Token   string `json:"token"`
+}
+
+type userInfoResponse {
+	Status_code int32  `json:"status_code"`
+	Status_msg  string `json:"status_msg"`
+	User        User   `json:"user"`
+}
+
+type User {
+	Id             int64  `json:"id"`
+	Name           string `json:"name"`
+	Follow_count   int    `json:"follow_count"`
+	Follower_count int    `json:"follower_count"`
+}
+
+service douyin-api {
+	@handler registerHandler // TODO: set handler name and delete this comment
+	post /douyin/user/register(registerRequest) returns(registerResponse)
+	
+	@handler loginHandler
+	post /douyin/user/login(loginRequest) returns(loginResponse)
+	
+	@handler userInfoHandler
+	get /douyin/user(userInfoRequest) returns(userInfoResponse)
+}
